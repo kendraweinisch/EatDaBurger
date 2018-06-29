@@ -4,7 +4,7 @@ var router = express.Router();
 var burger = require('../models/burger');
 
 router.get('/', function (req, res) {
-    res.render('index');
+    res.redirect('/burgers');
 });
 
 router.get('/burgers', function (req, res) {
@@ -20,17 +20,21 @@ router.get('/burgers', function (req, res) {
 });
 
 router.post('/burgers', function (req, res) {
-    burger.insertOne(['burger_name', 'devoured'], [req.body.burger_name, req.body.devoured], function () {
-        res.redirect('/burgers');
+    console.log(req.body)
+    burger.insertOne(req.body.burger_type, function(results) {
+        console.log(results)
+        res.redirect('/burgers')
+    })
     });
-});
-router.put('/burgers/update/:id', function(req, res) {
-    var condition = 'id = ' + req.params.id
-    console.log('condition', 'condition'),
+router.put('/burgers', function(req, res) {
+    var id = req.body.id
+    console.log(req.body)
 
-    burger.updateOne({ devoured: req.body.devoured }, condition, function () {
-        res.redirect('/burgers');
+    burger.updateOne(id, function(data) {
+        console.log(data)
+        // res.redirect('/burgers');
+        res.json(data)
     });
-});
+ });
 
 module.exports = router;

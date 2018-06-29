@@ -1,3 +1,7 @@
 <div>
-    {{type}}
+    {{type}}  {{#unless this.devoured}} 
+    
+    <button data-id={{id}} class="eatButton">EAT</button>
+    {{/unless}} 
+
 </div>
