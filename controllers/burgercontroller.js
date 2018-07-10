@@ -36,5 +36,8 @@ router.put('/burgers', function(req, res) {
         res.json(data)
     });
  });
-
+router.delete(`/burgers`, (req, res) => {
+   burger.deleteAll() 
+   res.status(200).json({message: "Successfully digested burgers"})
+})
 module.exports = router;

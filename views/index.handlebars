@@ -14,10 +14,12 @@
 
         <div class="col-sm-6">
             <h2 class="text-center">DEVOURED!</h2>
+
             {{#each burgers}} {{#if this.devoured}} 
 {{> burger}}
             
             {{/if}} {{/each}}
+            <button class="deleteBurger">Digest</button>
 
         </div>
     </div>

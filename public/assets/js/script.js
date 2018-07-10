@@ -17,3 +17,11 @@ $(".eatButton").click(function (event) {
             location.reload()
         })
 })
+
+$(".deleteBurger").click(function (event) {
+    fetch("/burgers", {
+      method: "DELETE", 
+    })
+    .then(res => res.json())
+    .then(res => location.reload())
+})
